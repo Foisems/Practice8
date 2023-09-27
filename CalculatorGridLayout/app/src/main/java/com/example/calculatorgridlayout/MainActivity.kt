@@ -120,12 +120,16 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val num2: Double = textView.text.toString().toDouble()
                     decimal = true
+                    var res: Double? = null
                     when (count) {
-                        1.toByte() -> textView.text = (num1!! + num2).toString()
-                        2.toByte() -> textView.text = (num1!! - num2).toString()
-                        3.toByte() -> textView.text = (num1!! * num2).toString()
-                        4.toByte() -> textView.text = (num1!! / num2).toString()
+                        1.toByte() -> res = (num1!! + num2)
+                        2.toByte() -> res = (num1!! - num2)
+                        3.toByte() -> res = (num1!! * num2)
+                        4.toByte() -> res = (num1!! / num2)
                     }
+                    textView.text =
+                        if (res?.toInt()?.toDouble() == res) res?.toInt().toString()
+                        else res.toString()
                 }
                 catch(e: Exception){
                     textView.text = e.message
